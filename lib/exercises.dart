@@ -1,4 +1,4 @@
-1. Generic fold accumulator
+/* 1. Generic fold accumulator
 Create a generic function:
 T accumulate<T>(Iterable<T> values, T initial, T Function(T, T) operation)
 
@@ -10,9 +10,25 @@ accumulate<int>([1, 2, 3, 4], 0, (a, b) => a + b);
 // 10
 
 accumulate<String>(["D", "a", "r", "t"], "", (a, b) => a + b);
-// "Dart"
+// "Dart" */
 
-2. Generic inventory filter
+//import dart:core;
+
+void main() {
+
+  T accumulate<T>(Iterable<T> values, T initial, T Function(T, T) operation) {
+    return values.fold(initial, operation);
+  }
+
+  typedef thisType = int;
+
+  dynamic toPrint = accumulate(<dynamic>[1, 2, 3, 4], 0 as dynamic, (dynamic previousValue, dynamic element) => previousValue + element);
+
+  print(toPrint);
+
+}
+
+/* 2. Generic inventory filter
 Create:
 class Product {
   final String name;
@@ -255,4 +271,4 @@ Constraints:
 - use fold;
 - use an arrow function;
 - no temporary variables.
-These are closer to what you actually encounter when using Dart: manipulating collections, preserving type safety, dealing with dynamic data, and composing functions instead of just adding numbers in lists.
+These are closer to what you actually encounter when using Dart: manipulating collections, preserving type safety, dealing with dynamic data, and composing functions instead of just adding numbers in lists. */
