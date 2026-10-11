@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 import 'package:iterable_exercises/exercises.dart';
 
-void main() {
+void exec1_test() {
   group('1 - Generic accumulate', () {
     test('folds integers correctly', () {
       expect(
@@ -28,6 +28,8 @@ void main() {
       );
     });
   });
+}
+  
 
 
   group('2 - Generic filterAvailable', () {

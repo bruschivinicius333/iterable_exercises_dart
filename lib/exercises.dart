@@ -12,24 +12,12 @@ accumulate<int>([1, 2, 3, 4], 0, (a, b) => a + b);
 accumulate<String>(["D", "a", "r", "t"], "", (a, b) => a + b);
 // "Dart" */
 
-//import dart:core;
-
-void main() {
-
-  T accumulate<T>(Iterable<T> values, T initial, T Function(T, T) operation) {
-    return values.fold(initial, operation);
-  }
-
-  typedef thisType = int;
-
-  dynamic toPrint = accumulate(<dynamic>[1, 2, 3, 4], 0 as dynamic, (dynamic previousValue, dynamic element) => previousValue + element);
-
-  print(toPrint);
-
+T accumulate<T>(Iterable<T> values, T initial, T Function(T, T) operation) {
+  return values.fold(initial, operation);
 }
 
-/* 2. Generic inventory filter
-Create:
+/// 2. Generic inventory filter
+/// Create:
 class Product {
   final String name;
   final double price;
@@ -38,23 +26,25 @@ class Product {
   Product(this.name, this.price, this.available);
 }
 
-Create:
+/// Create:
 List<T> filterAvailable<T>(
   Iterable<T> items,
   bool Function(T) predicate,
-)
+) {
+  available.fi
+}
 
-Requirements:
-- use where;
-- use a generic type;
-- return a List<T>.
-Example:
-filterAvailable<Product>(
-  products,
-  (p) => p.available && p.price < 100,
-);
+/// Requirements:
+/// - use where;
+/// - use a generic type;
+/// - return a List<T>.
+/// Example:
+/// filterAvailable<Product>(
+  /// products,
+  /// (p) => p.available && p.price < 100,
+/// );
 
-3. Dynamic JSON-like parser
+/*3. Dynamic JSON-like parser
 You receive:
 final data = [
   {"name": "Sword", "damage": 50},
