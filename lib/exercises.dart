@@ -27,11 +27,8 @@ class Product {
 }
 
 /// Create:
-List<T> filterAvailable<T>(
-  Iterable<T> items,
-  bool Function(T) predicate,
-) {
-  available.fi
+List<T> filterAvailable<T>(Iterable<T> items, bool Function(T) predicate) {
+  return items.where(predicate).toList();
 }
 
 /// Requirements:
@@ -40,8 +37,8 @@ List<T> filterAvailable<T>(
 /// - return a List<T>.
 /// Example:
 /// filterAvailable<Product>(
-  /// products,
-  /// (p) => p.available && p.price < 100,
+/// products,
+/// (p) => p.available && p.price < 100,
 /// );
 
 /*3. Dynamic JSON-like parser
@@ -63,8 +60,28 @@ Rules:
 
 - Do not assume every map is correct.
 Expected:
-80
+80*/
 
+final data = [
+  {"name": "Sword", "damage": 50},
+  {"name": "Potion", "damage": "none"},
+  {"name": "Bow", "damage": 30},
+];
+
+int dynamicJSONLikeParser(List<Map<String, dynamic>> elements) {
+  /* elements
+      .where((element) => element["damage"] is num && element["damage"] > 0)
+      .fold(0, ((previousValue, element) => 5)); */
+
+  return elements
+      .where((element) => element["damage"] is num && element["damage"] > 0)
+      .fold(
+        0,
+        (previousValue, element) => previousValue + element["damage"] as int,
+      );
+}
+
+/*
 4. Mixed-type list analyzer
 Given:
 final values = [
@@ -90,9 +107,31 @@ Return:
 Requirements:
 - use fold();
 - use runtime type checks:
-value is int
+value is int*/
 
-5. RPG character system
+final values = [10, "hello", 3.5, true, 20, "dart"];
+
+/// Create:
+Map<String, int> analyze(Iterable<dynamic> values) {
+  final Map<String, int> toReturn = {
+    "int": 0,
+    "double": 0,
+    "String": 0,
+    "bool": 0,
+  };
+  values.fold(true, (previousValue, element) {
+    // the exercise obligates me to use `fold`
+    // stupid null-fanatic compiler
+    if (element is int) toReturn["int"] = (toReturn["int"] ?? 0) + 1;
+    if (element is double) toReturn["double"] = (toReturn["double"] ?? 0) + 1;
+    if (element is String) toReturn["String"] = (toReturn["String"] ?? 0) + 1;
+    if (element is bool) toReturn["bool"] = (toReturn["bool"] ?? 0) + 1;
+    return false; // no reason, just syntax
+  });
+  return toReturn;
+}
+
+/*5. RPG character system
 Create:
 abstract class Character {
   int get power;
@@ -140,6 +179,28 @@ Statistics(
 )
 
 No loops.
+*/
+
+/// Create:
+abstract class Character {
+  int get power;
+}
+
+class Warrior implements Character {
+  final int power;
+}
+
+class Mage implements Character {
+  final int power;
+}
+
+/// Given:
+List<Character> party;
+
+/// Implement:
+bool hasPowerfulMage(List<Character> party)
+
+/*
 7. Nullable values pipeline
 Given:
 List<String?> names = [
