@@ -157,8 +157,54 @@ Requirements:
 character is Mage
 
 Expected logic:
-"Does any member satisfy both conditions?"
-6. Fold into a custom object
+"Does any member satisfy both conditions?"*/
+
+/// Create:
+abstract class Character {
+  final int _power = 0;
+  Character(int power);
+  int get power => _power;
+}
+
+class Warrior extends Character {
+  Warrior(super.power);
+}
+
+class Mage extends Character {
+  Mage(super.power);
+}
+
+class Sage extends Character {
+  Sage(super.power);
+}
+
+class Monk extends Character {
+  Monk(super.power);
+}
+
+class Knight extends Character {
+  Knight(super.power);
+}
+
+/// Given:
+List<Character> party = [
+  Warrior(23235),
+  Mage(23552),
+  Sage(745624),
+  Monk(32523),
+  Mage(125325),
+  Mage(1246),
+  Mage(4376347),
+  Knight(323),
+];
+
+/// Implement:
+bool hasPowerfulMage(List<Character> party) {
+  const randomPowerConstantITookOutOfMyAssAndNothingShouldDependOn = 8000;
+  return party.any(((character) => character is Mage && character.power > randomPowerConstantITookOutOfMyAssAndNothingShouldDependOn);
+}
+
+/*6. Fold into a custom object
 Create:
 class Statistics {
   final int count;
@@ -180,25 +226,6 @@ Statistics(
 
 No loops.
 */
-
-/// Create:
-abstract class Character {
-  int get power;
-}
-
-class Warrior implements Character {
-  final int power;
-}
-
-class Mage implements Character {
-  final int power;
-}
-
-/// Given:
-List<Character> party;
-
-/// Implement:
-bool hasPowerfulMage(List<Character> party)
 
 /*
 7. Nullable values pipeline
