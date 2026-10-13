@@ -201,7 +201,12 @@ List<Character> party = [
 /// Implement:
 bool hasPowerfulMage(List<Character> party) {
   const randomPowerConstantITookOutOfMyAssAndNothingShouldDependOn = 8000;
-  return party.any(((character) => character is Mage && character.power > randomPowerConstantITookOutOfMyAssAndNothingShouldDependOn);
+  return party.any(
+    ((character) =>
+        character is Mage &&
+        character.power >
+            randomPowerConstantITookOutOfMyAssAndNothingShouldDependOn),
+  );
 }
 
 /*6. Fold into a custom object
@@ -227,8 +232,29 @@ Statistics(
 No loops.
 */
 
-/*
-7. Nullable values pipeline
+class Statistics {
+  final int count;
+  final double total;
+  final double max;
+
+  Statistics(this.count, this.total, this.max);
+}
+
+//Given:
+var things = [10.5, 20.0, 5.5];
+
+var toPrint = things.fold(Statistics(0, 0.0, 0.0), (previousValue, element) {
+  if (element == things.last) {
+    return Statistics(
+      things.length,
+      things.fold(0, (previousValue, element) => previousValue + element),
+      things.lastWhere((innerElement) => innerElement > element),
+    );
+  }
+  return previousValue;
+});
+
+/*7. Nullable values pipeline
 Given:
 List<String?> names = [
   "Alice",
@@ -247,8 +273,26 @@ Alice,Bob,Charlie
 Requirements:
 - remove nulls;
 - use whereType<String>();
-- use fold().
-8. Permission system
+- use fold().*/
+
+List<String?> clod = [
+  "Alice",
+  null,
+  "Bob",
+  null,
+  "Charlie"
+];
+
+/* clod.whereType<String?>().fold(0, (previousValue, element) {
+  return element ?? null;
+}); */
+print(clod.whereType<String>());
+
+
+
+//String result
+
+/*8. Permission system
 Create:
 class User {
   final String name;
