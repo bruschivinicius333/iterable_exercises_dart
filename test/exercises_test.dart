@@ -32,7 +32,7 @@ void exec1_test() {
   
 
 
-  group('2 - Generic filterAvailable', Function()  {
+  group('2 - Generic filterAvailable', Function() Function  {
     final products = [
       Product("Cheap", 50, true),
       Product("Expensive", 200, true),
@@ -60,7 +60,7 @@ void exec1_test() {
   });
 
 
-  group('3 - Dynamic parser', Function()  {
+  group('3 - Dynamic parser', Function() Function  {
     test('ignores invalid dynamic values', () {
       final data = [
         {"name": "Sword", "damage": 50},
@@ -83,7 +83,7 @@ void exec1_test() {
   });
 
 
-  group('4 - Mixed type analyzer', Function()  {
+  group('4 - Mixed type analyzer', Function() Function  {
     test('counts runtime types correctly', () {
       final result = analyze([
         10,
@@ -106,7 +106,7 @@ void exec1_test() {
   });
 
 
-  group('5 - RPG character system', Function()  {
+  group('5 - RPG character system', Function() Function  {
     test('finds powerful mage', () {
       final party = [
         Warrior(100),
@@ -134,7 +134,7 @@ void exec1_test() {
   });
 
 
-  group('6 - Statistics fold', Function()  {
+  group('6 - Statistics fold', Function() Function  {
     test('creates correct statistics object', () {
       final result = calculateStatistics([
         10.5,
@@ -157,7 +157,7 @@ void exec1_test() {
   });
 
 
-  group('7 - Nullable pipeline', Function()  {
+  group('7 - Nullable pipeline', Function() Function  {
     test('removes nulls and joins names', () {
       expect(
         joinNames([
@@ -180,7 +180,7 @@ void exec1_test() {
   });
 
 
-  group('8 - Permission system', Function()  {
+  group('8 - Permission system', Function() Function  {
     test('detects delete permission', () {
       expect(
         canDelete([
@@ -202,7 +202,7 @@ void exec1_test() {
   });
 
 
-  group('9 - Generic groupBy', Function()  {
+  group('9 - Generic groupBy', Function() Function  {
     test('groups correctly by selector', () {
       final result = groupBy<String, String>(
         [
@@ -226,7 +226,7 @@ void exec1_test() {
   });
 
 
-  group('10 - Command processor', Function()  {
+  group('10 - Command processor', Function() Function  {
     test('executes existing command', () {
       final commands = [
         Command("save", () => true),
@@ -266,7 +266,7 @@ void exec1_test() {
   });
 
 
-  group('11 - Event system', Function()  {
+  group('11 - Event system', Function() Function  {
     test('counts only ErrorEvents', () {
       final events = [
         LoginEvent("bob"),
@@ -288,7 +288,7 @@ void exec1_test() {
   });
 
 
-  group('12 - One-line challenge', Function()  {
+  group('12 - One-line challenge', Function() Function  {
     test('calculates even sum correctly', () {
       expect(
         evenSumMessage([1, 2, 3, 4, 5, 6]),

@@ -283,14 +283,10 @@ List<String?> clod = [
   "Charlie"
 ];
 
-/* clod.whereType<String?>().fold(0, (previousValue, element) {
-  return element ?? null;
-}); */
-print(clod.whereType<String>());
-
-
-
-//String result
+String result = clod.whereType<String>().fold("", (previousValue, element) {
+  previousValue += (previousValue == "") ? element : ",$element";
+  return previousValue;
+});
 
 /*8. Permission system
 Create:
@@ -307,8 +303,16 @@ bool canDelete(List<User> users)
 Rules:
 - return true if any user has "delete" permission;
 - use any();
-- do not use loops.
-9. Generic grouping
+- do not use loops.*/
+
+class User {
+  final String name;
+  final List<String> permissions;
+
+  User(this.name, this.permissions);
+}
+
+/*9. Generic grouping
 Implement:
 Map<K, List<T>> groupBy<T, K>(
   Iterable<T> items,
