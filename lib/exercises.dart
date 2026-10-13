@@ -408,16 +408,15 @@ bool executeCommand(
   List<Command> commands,
   String name
 ) {
-  if(commands.any(command => command.name == name)) {
-
+  if(commands.any((command) => command.name == name)) {
+    print("Command found. Running it...");
+    commands.firstWhere((command) => command.name == name).action();
+    print("Command done.");
+    return true;
+  } else {
+    print("Command not found.");
+    return false;
   }
-  commands.firstWhere((command) => command.name == name).action();
-}
-
-void main() {
-
-  executeCommand(given, "Bruschi");
-
 }
 
 /*11. Type-safe event system
@@ -441,8 +440,45 @@ int countErrors(List<Event> events)
 Requirements:
 - use fold();
 - use is ErrorEvent;
-- access fields after casting.
-12. One-line Dart challenge
+- access fields after casting.*/
+
+/// Create:
+abstract class Event {}
+
+class LoginEvent extends Event {
+  final String user;
+
+  LoginEvent(this.user);
+}
+
+class ErrorEvent extends Event {
+  final int code;
+
+  ErrorEvent(this.code);
+}
+
+/// Given:
+final events = <Event>[
+  LoginEvent("awgawgawg"),
+  ErrorEvent(3215236),
+  LoginEvent("ijregoijoijer"),
+  ErrorEvent(326478),
+  ErrorEvent(334734)
+];
+
+/// Implement:
+int countErrors(List<Event> events) {
+  int howMany = 0;
+  events.fold(Event, (_, element) {
+    if (element is ErrorEvent) {
+      ++howMany;
+    } 
+    return Type;
+  });
+  return howMany;
+}
+
+/*12. One-line Dart challenge
 Without writing a normal loop:
 Given:
 final numbers = [1, 2, 3, 4, 5, 6];
@@ -456,3 +492,9 @@ Constraints:
 - use an arrow function;
 - no temporary variables.
 These are closer to what you actually encounter when using Dart: manipulating collections, preserving type safety, dealing with dynamic data, and composing functions instead of just adding numbers in lists. */
+///Given:
+const numbers = [1, 2, 3, 4, 5, 6];
+
+void main() {
+  print("The sum of even numbers is ${numbers.where((number) => number.isEven).fold(0, (previousValue, element) => previousValue + element)}");
+}
