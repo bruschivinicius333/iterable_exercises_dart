@@ -312,6 +312,10 @@ class User {
   User(this.name, this.permissions);
 }
 
+bool canDelete(List<User> users) {
+  return users.any((user) => user.permissions.any((permission) => permission == "delete"));
+}
+
 /*9. Generic grouping
 Implement:
 Map<K, List<T>> groupBy<T, K>(
@@ -334,8 +338,30 @@ Result:
 Requirements:
 - use fold();
 - generic types;
-- arrow functions.
-10. Command processor
+- arrow functions.*/
+/* Map<K, List<T>> groupBy<T, K>(
+  Iterable<T> items,
+  K Function(T item) selector
+) {
+  return Map<K, T>();
+}
+
+void main() {
+
+  groupBy(
+    ["apple", "banana", "avocado"],
+    (fruit) => fruit[0],
+  );
+
+} */
+
+/* {
+  "a": ["apple", "avocado"],
+  "b": ["banana"]
+} */
+
+
+/*10. Command processor
 Create:
 class Command {
   final String name;
@@ -361,8 +387,40 @@ Requirements:
 - find command;
 - execute its function;
 - handle missing commands;
-- use any() somewhere.
-11. Type-safe event system
+- use any() somewhere.*/
+/// Given:
+class Command {
+  final String name;
+  final Function action;
+
+  Command(this.name, this.action);
+}
+
+/// Given:
+final given = [
+ Command("save", () => true),
+ Command("exit", () => false),
+ Command("backup", () => true)
+];
+
+/// Implement:
+bool executeCommand(
+  List<Command> commands,
+  String name
+) {
+  if(commands.any(command => command.name == name)) {
+
+  }
+  commands.firstWhere((command) => command.name == name).action();
+}
+
+void main() {
+
+  executeCommand(given, "Bruschi");
+
+}
+
+/*11. Type-safe event system
 Create:
 abstract class Event {}
 
