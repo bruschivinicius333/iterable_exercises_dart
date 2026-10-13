@@ -495,6 +495,6 @@ These are closer to what you actually encounter when using Dart: manipulating co
 ///Given:
 const numbers = [1, 2, 3, 4, 5, 6];
 
-void main() {
+void oneLineDartChallenge(List<int> numbers) {
   print("The sum of even numbers is ${numbers.where((number) => number.isEven).fold(0, (previousValue, element) => previousValue + element)}");
 }
