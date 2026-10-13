@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:iterable_exercises/exercises.dart';
+import '../bin/exercises.dart';
 
 void exec1_test() {
   group('1 - Generic accumulate', () {
